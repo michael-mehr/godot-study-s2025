@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-A 3D Action-Adventure game inspired by dungeon crawlers
+A 3D Action-Adventure game inspired by dungeon crawlers and ARPGs
 
 Play as a knight traversing levels to get to the goal, while battling enemies, navigating mazes, and solving puzzles.
 
@@ -67,6 +67,8 @@ cd godot-study
   - [ ] Enemy Spawns
 - [ ] UI
   - [x] Pause Menu
+    - [x] Resume Button
+    - [x] Quit Button
   - [ ] HUD
   - [ ] Title Menu
 - [ ] Misc.
