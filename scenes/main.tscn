@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbmjejxxpmkor"]
+[gd_scene load_steps=9 format=3 uid="uid://bbmjejxxpmkor"]
 
 [ext_resource type="Script" uid="uid://blyiipwaegf27" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bgowi30lhgagn" path="res://scenes/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://dsdkvtijr8evj" path="res://scripts/view.gd" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://frhfsa4fls6e" path="res://scenes/pause_menu.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cyik38e80awsu" path="res://models/Skeleton_Minion/Skeleton_Minion.glb" id="5_tbgi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -49,6 +50,9 @@ target = NodePath("../Player")
 [node name="Camera" type="Camera3D" parent="World/View"]
 transform = Transform3D(1, 0, 0, 0, 0.914988, 0.403481, 0, -0.403481, 0.914988, 0, 6.74686, 8.29859)
 fov = 76.3629
+
+[node name="Skeleton_Minion" parent="World" instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04141, 0.527792, -2.59842)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
