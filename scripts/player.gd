@@ -82,7 +82,8 @@ func handle_controls(delta):
   movement_velocity = input * movement_speed * delta
 
   if Input.is_action_just_pressed("jump"):
-    if jump_single or jump_double:
+    if jump_single:
+      # if jump_double:
       jump()
 
 func handle_gravity(delta):
@@ -96,9 +97,9 @@ func jump():
   model.scale = Vector3(0.5, 1.5, 0.5)
   if jump_single:
     jump_single = false
-    jump_double = true
-  else:
-    jump_double = false
+  #   jump_double = true
+  # else:
+  #   jump_double = false
 
 func collect_coin():
   pass
