@@ -4,8 +4,8 @@ extends CharacterBody3D
 @export var view : Node3D
 
 @export_subgroup("Properties")
-@export var movement_speed = 250
-@export var jump_strength = 7
+@export var movement_speed = 500
+@export var jump_strength = 15
 
 var movement_velocity : Vector3
 var rotation_direction : float

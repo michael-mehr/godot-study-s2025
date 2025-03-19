@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://vtr8rxg88pl"]
+[gd_scene load_steps=4 format=3 uid="uid://vtr8rxg88pl"]
 
+[ext_resource type="Script" uid="uid://vbdfajo0iwgi" path="res://scripts/skeleton_minion.gd" id="1_anfeb"]
 [ext_resource type="PackedScene" uid="uid://dpy6dpmbjn5q4" path="res://addons/KayKit/Characters/Skeleton_Minion.glb" id="1_wn3et"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_anfeb"]
 radius = 0.4
 
 [node name="SkeletonMinion" type="CharacterBody3D"]
+script = ExtResource("1_anfeb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
