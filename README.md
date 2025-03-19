@@ -69,8 +69,9 @@ cd godot-study
   - [x] Pause Menu
     - [x] Resume Button
     - [x] Quit Button
+  - [x] Title Menu
   - [ ] HUD
-  - [ ] Title Menu
+  - [ ] Game Over Screen
 - [ ] Misc.
   - [x] Pause Function
 
