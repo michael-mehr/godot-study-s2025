@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bbmjejxxpmkor"]
+[gd_scene load_steps=16 format=3 uid="uid://bbmjejxxpmkor"]
 
 [ext_resource type="Script" uid="uid://blyiipwaegf27" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bgowi30lhgagn" path="res://scenes/player.tscn" id="1_o5qli"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://vtr8rxg88pl" path="res://scenes/skeleton_minion.tscn" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://frhfsa4fls6e" path="res://scenes/pause_menu.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://ci2kkacnb2ik0" path="res://addons/KayKit/Dungeon/wall.gltf" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://cgq5nbbqti7ij" path="res://scripts/hud.gd" id="6_choun"]
+[ext_resource type="Texture2D" uid="uid://bibnv451te7sp" path="res://addons/Kenney Game Assets/HUD/hud_coins.png" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://dj7tyjyan3r0e" path="res://scenes/coin.tscn" id="6_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://b57o1syrfk53i" path="res://addons/Kenney Game Assets/HUD/hud_x.png" id="8_ya4ey"]
+[ext_resource type="FontFile" uid="uid://kgdljoa2ub1g" path="res://addons/fonts/monogram/monogram.ttf" id="9_eb6dy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -19,6 +24,12 @@ background_mode = 2
 sky = SubResource("Sky_sugp2")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_trceg"]
+font = ExtResource("9_eb6dy")
+font_size = 60
+shadow_color = Color(0, 0, 0, 0.85098)
+shadow_offset = Vector2(2, 2)
 
 [node name="GameManager" type="Node"]
 process_mode = 3
@@ -60,6 +71,9 @@ fov = 76.3629
 [node name="wall2" parent="Level/LevelComponents" instance=ExtResource("5_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477223, -20.0171)
 
+[node name="Coin" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00671, -9.66053)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="UI"]
@@ -69,6 +83,39 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_choun")
+
+[node name="CoinCounter" type="Control" parent="UI/HUD"]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 17.0
+offset_right = 229.0
+offset_bottom = 122.0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/CoinCounter"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 24.0
+offset_right = 73.0
+offset_bottom = 71.0
+texture = ExtResource("6_o6xl0")
+
+[node name="X" type="TextureRect" parent="UI/HUD/CoinCounter"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 30.0
+offset_right = 118.0
+offset_bottom = 70.0
+texture = ExtResource("8_ya4ey")
+
+[node name="Coins" type="Label" parent="UI/HUD/CoinCounter"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 23.0
+offset_right = 171.0
+offset_bottom = 71.0
+text = "0"
+label_settings = SubResource("LabelSettings_trceg")
 
 [node name="PauseMenu" parent="UI" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_sugp2")]
 visible = false
