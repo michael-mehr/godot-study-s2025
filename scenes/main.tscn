@@ -35,56 +35,56 @@ shadow_offset = Vector2(2, 2)
 process_mode = 3
 script = ExtResource("1_jyhfs")
 
-[node name="Level" type="Node3D" parent="."]
+[node name="DebugLevel" type="Node3D" parent="."]
 process_mode = 1
 
-[node name="Environment" type="WorldEnvironment" parent="Level"]
+[node name="Environment" type="WorldEnvironment" parent="DebugLevel"]
 environment = SubResource("Environment_jyhfs")
 
-[node name="Sun" type="DirectionalLight3D" parent="Level"]
+[node name="Sun" type="DirectionalLight3D" parent="DebugLevel"]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, -1.48465, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+[node name="CSGBox3D" type="CSGBox3D" parent="DebugLevel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97, 0.0277652, -1.53033)
 use_collision = true
 size = Vector3(118.01, 1, 40.7536)
 
-[node name="Enemies" type="Node3D" parent="Level"]
+[node name="Enemies" type="Node3D" parent="DebugLevel"]
 
-[node name="SkeletonMinion" parent="Level/Enemies" instance=ExtResource("2_tbgi4")]
+[node name="SkeletonMinion" parent="DebugLevel/Enemies" instance=ExtResource("2_tbgi4")]
 transform = Transform3D(0.506907, 0, -0.862001, 0, 1, 0, 0.862001, 0, 0.506907, 11.2543, 0.804653, -7.82676)
 
-[node name="Player" parent="Level" instance=ExtResource("1_o5qli")]
+[node name="Player" parent="DebugLevel" instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.695196, 0)
 
-[node name="View" type="Node3D" parent="Level" node_paths=PackedStringArray("target")]
+[node name="View" type="Node3D" parent="DebugLevel" node_paths=PackedStringArray("target")]
 script = ExtResource("2_0wfyh")
 target = NodePath("../Player")
 
-[node name="Camera" type="Camera3D" parent="Level/View"]
+[node name="Camera" type="Camera3D" parent="DebugLevel/View"]
 transform = Transform3D(1, 0, 0, 0, 0.768976, 0.639278, 0, -0.639278, 0.768976, 0, 8.45189, 8.02275)
 fov = 76.3629
 
-[node name="LevelComponents" type="Node3D" parent="Level"]
+[node name="LevelComponents" type="Node3D" parent="DebugLevel"]
 
-[node name="wall2" parent="Level/LevelComponents" instance=ExtResource("5_tefeu")]
+[node name="wall2" parent="DebugLevel/LevelComponents" instance=ExtResource("5_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477223, -20.0171)
 
-[node name="Coin" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00671, -9.66053)
+[node name="Coin" parent="DebugLevel/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911546, -9.66053)
 
-[node name="Coin2" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.04681, 2.00671, -9.66053)
+[node name="Coin2" parent="DebugLevel/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.04681, 0.911546, -9.66053)
 
-[node name="Coin3" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7757, 2.00671, -9.66053)
+[node name="Coin3" parent="DebugLevel/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7757, 0.911546, -9.66053)
 
-[node name="Coin4" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00671, -5.23324)
+[node name="Coin4" parent="DebugLevel/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.911546, -5.23324)
 
-[node name="Coin5" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27078, 2.00671, -12.1798)
+[node name="Coin5" parent="DebugLevel/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27078, 0.911546, -12.1798)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -133,9 +133,9 @@ label_settings = SubResource("LabelSettings_trceg")
 visible = false
 game_manager = NodePath("../..")
 
-[connection signal="coin_collected" from="Level/Player" to="UI/HUD" method="_on_coin_collected"]
-[connection signal="body_entered" from="Level/LevelComponents/Coin" to="Level/LevelComponents/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="Level/LevelComponents/Coin2" to="Level/LevelComponents/Coin2" method="_on_body_entered"]
-[connection signal="body_entered" from="Level/LevelComponents/Coin3" to="Level/LevelComponents/Coin3" method="_on_body_entered"]
-[connection signal="body_entered" from="Level/LevelComponents/Coin4" to="Level/LevelComponents/Coin4" method="_on_body_entered"]
-[connection signal="body_entered" from="Level/LevelComponents/Coin5" to="Level/LevelComponents/Coin5" method="_on_body_entered"]
+[connection signal="coin_collected" from="DebugLevel/Player" to="UI/HUD" method="_on_coin_collected"]
+[connection signal="body_entered" from="DebugLevel/LevelComponents/Coin" to="DebugLevel/LevelComponents/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="DebugLevel/LevelComponents/Coin2" to="DebugLevel/LevelComponents/Coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="DebugLevel/LevelComponents/Coin3" to="DebugLevel/LevelComponents/Coin3" method="_on_body_entered"]
+[connection signal="body_entered" from="DebugLevel/LevelComponents/Coin4" to="DebugLevel/LevelComponents/Coin4" method="_on_body_entered"]
+[connection signal="body_entered" from="DebugLevel/LevelComponents/Coin5" to="DebugLevel/LevelComponents/Coin5" method="_on_body_entered"]
