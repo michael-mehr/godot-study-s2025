@@ -74,6 +74,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.477223, -20.0171)
 [node name="Coin" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00671, -9.66053)
 
+[node name="Coin2" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.04681, 2.00671, -9.66053)
+
+[node name="Coin3" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7757, 2.00671, -9.66053)
+
+[node name="Coin4" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.00671, -5.23324)
+
+[node name="Coin5" parent="Level/LevelComponents" instance=ExtResource("6_ya4ey")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27078, 2.00671, -12.1798)
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="UI"]
@@ -121,4 +133,9 @@ label_settings = SubResource("LabelSettings_trceg")
 visible = false
 game_manager = NodePath("../..")
 
+[connection signal="coin_collected" from="Level/Player" to="UI/HUD" method="_on_coin_collected"]
 [connection signal="body_entered" from="Level/LevelComponents/Coin" to="Level/LevelComponents/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/LevelComponents/Coin2" to="Level/LevelComponents/Coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/LevelComponents/Coin3" to="Level/LevelComponents/Coin3" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/LevelComponents/Coin4" to="Level/LevelComponents/Coin4" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/LevelComponents/Coin5" to="Level/LevelComponents/Coin5" method="_on_body_entered"]

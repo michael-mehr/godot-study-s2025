@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal coin_collected
+
 @export_subgroup("Components")
 @export var view : Node3D
 
@@ -102,4 +104,5 @@ func jump():
   #   jump_double = false
 
 func collect_coin():
-  pass
+  coins += 1
+  coin_collected.emit(coins)
