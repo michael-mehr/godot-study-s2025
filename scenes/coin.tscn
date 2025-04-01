@@ -4,13 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://c6vlcrs148vff" path="res://addons/Kenney Game Assets/Platformer Kit/coin-gold.glb" id="1_rwqht"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i64fm"]
-size = Vector3(0.4, 0.4, 0.2)
+size = Vector3(1.16842, 1.21957, 0.2)
 
 [node name="Coin" type="Area3D"]
 script = ExtResource("1_i64fm")
 
 [node name="GoldCoin" parent="." instance=ExtResource("1_rwqht")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.199508, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00401001, 0.609292, 0)
 shape = SubResource("BoxShape3D_i64fm")

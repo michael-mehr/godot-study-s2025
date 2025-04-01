@@ -120,3 +120,5 @@ label_settings = SubResource("LabelSettings_trceg")
 [node name="PauseMenu" parent="UI" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_sugp2")]
 visible = false
 game_manager = NodePath("../..")
+
+[connection signal="body_entered" from="Level/LevelComponents/Coin" to="Level/LevelComponents/Coin" method="_on_body_entered"]
