@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d12fak0ml8hxe"]
+
+[ext_resource type="PackedScene" uid="uid://ci2kkacnb2ik0" path="res://addons/KayKit/Dungeon/wall.gltf" id="1_uobb7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qkyv6"]
+points = PackedVector3Array(2, 4, 0.5, 2, 0, 0.5, 2, 4, -0.5, -2, 4, 0.5, 2, 0, -0.5, -2, 0, 0.5, -2, 4, -0.5, -2, 0, -0.5)
+
+[node name="wall" instance=ExtResource("1_uobb7")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape3D_qkyv6")

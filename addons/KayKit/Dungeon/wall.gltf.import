@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/wall.gltf-7d271bfc68a907fd20ba5f0f815e1e11.sc
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
