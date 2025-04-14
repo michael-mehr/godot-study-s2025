@@ -14,6 +14,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_anfeb")
 
 [node name="Skeleton_Minion" parent="." instance=ExtResource("1_wn3et")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Skeleton_Minion/Rig" index="0"]
 bones/1/position = Vector3(0, 0.392064, 0)
@@ -99,5 +100,8 @@ bones/39/rotation = Quaternion(-0.707107, -7.27951e-08, -7.27951e-08, 0.707107)
 bones/40/position = Vector3(-0.510844, 0.788312, 0.0597369)
 bones/40/rotation = Quaternion(-0.758253, -1.52737e-07, 0.651961, -1.11759e-08)
 bones/40/scale = Vector3(1, 1, 1)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.35
 
 [editable path="Skeleton_Minion"]
