@@ -8,11 +8,14 @@ const SPEED = 4.0
 
 @onready var nav_agent = $NavigationAgent3D
 
+@onready var model : Node3D = $Skeleton_Minion
+@onready var animation = $Skeleton_Minion/AnimationPlayer
+
 
 func _ready():
   player = get_node(player_path)
 
-func _process(delta):
+func _process(_delta):
   velocity = Vector3.ZERO
 
   nav_agent.set_target_position(player.global_transform.origin)
@@ -22,3 +25,4 @@ func _process(delta):
   look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z), Vector3.UP)
 
   move_and_slide()
+  animation.play("Running_A", 0.1)
