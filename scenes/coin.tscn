@@ -15,3 +15,5 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00401001, 0.609292, 0)
 shape = SubResource("BoxShape3D_i64fm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

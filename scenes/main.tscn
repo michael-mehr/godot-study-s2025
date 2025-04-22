@@ -136,8 +136,3 @@ visible = false
 game_manager = NodePath("../..")
 
 [connection signal="coin_collected" from="DebugLevel/Player" to="UI/HUD" method="_on_coin_collected"]
-[connection signal="body_entered" from="DebugLevel/LevelComponents/Coins/Coin" to="DebugLevel/LevelComponents/Coins/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="DebugLevel/LevelComponents/Coins/Coin2" to="DebugLevel/LevelComponents/Coins/Coin2" method="_on_body_entered"]
-[connection signal="body_entered" from="DebugLevel/LevelComponents/Coins/Coin3" to="DebugLevel/LevelComponents/Coins/Coin3" method="_on_body_entered"]
-[connection signal="body_entered" from="DebugLevel/LevelComponents/Coins/Coin4" to="DebugLevel/LevelComponents/Coins/Coin4" method="_on_body_entered"]
-[connection signal="body_entered" from="DebugLevel/LevelComponents/Coins/Coin5" to="DebugLevel/LevelComponents/Coins/Coin5" method="_on_body_entered"]
