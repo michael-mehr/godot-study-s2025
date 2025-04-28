@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 var player = null
 
-const SPEED = 4.0
+const SPEED = 3.0
 
 @export var player_path : NodePath
 

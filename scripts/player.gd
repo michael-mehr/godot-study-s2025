@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+enum States {IDLE, RUNNING, ATTACKING}
+
+var state: States = States.IDLE
+
 signal coin_collected
 
 @export_subgroup("Components")
@@ -93,6 +97,34 @@ func handle_gravity(delta):
   if gravity > 0 and is_on_floor():
     jump_single = true
     gravity = 0
+
+func handle_movement(delta):
+  var input := Vector3.ZERO
+
+  input.x = Input.get_axis("move_left", "move_right")
+  input.z = Input.get_axis("move_forward", "move_back")
+
+  # input = input.rotated(Vector3.UP, view.rotation.y)
+  if input.length() > 0:
+    set_state(States.RUNNING)
+
+  if input.length() > 1:
+    input = input.normalized()
+
+  movement_velocity = input * movement_speed * delta
+
+func set_state(new_state: States):
+  # var previous_state := state
+  state = new_state
+  
+  if state == States.IDLE:
+    animation.play("Idle")
+
+  if state == States.RUNNING:
+    animation.play("Running_A")
+
+  if state == States.ATTACKING:
+    animation.play("1H_Melee_Attack_Slice_Horizontal")
 
 func jump():
   gravity = -jump_strength
