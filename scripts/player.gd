@@ -25,6 +25,7 @@ var coins: int = 0
 
 @onready var model: Node3D = $Knight
 @onready var animation = $Knight/AnimationPlayer
+@onready var attack_timer: Timer = $AttackTimer
 
 func _ready():
 	# Initialize state functions
@@ -34,7 +35,7 @@ func _ready():
 
 func _physics_process(delta):
 	handle_gravity(delta)
-	handle_effects(delta)
+	# handle_effects(delta)
 
 	# Call the current state's function
 	if state in state_functions:
@@ -62,21 +63,29 @@ func _physics_process(delta):
 		model.scale = Vector3(1.25, 0.75, 1.25)
 
 	previously_floored = is_on_floor()
+	
+	# if Input.is_action_just_pressed("light_attack"):
+	# 	set_state(States.ATTACKING)
 
 func state_idle(delta):
 	handle_controls(delta)
 	if movement_velocity.length() > 0:
 		set_state(States.RUNNING)
+	elif animation.current_animation != "Idle":
+		animation.play("Idle", 0.1)
 
 func state_running(delta):
 	handle_controls(delta)
 	if movement_velocity.length() == 0:
 		set_state(States.IDLE)
+	elif animation.current_animation != "Running_A":
+			animation.play("Running_A", 0.1)
 
 func state_attacking(delta):
-	# Handle attacking logic here
+	handle_controls(delta)
 	if animation.current_animation != "1H_Melee_Attack_Slice_Horizontal":
 		animation.play("1H_Melee_Attack_Slice_Horizontal")
+		attack_timer.start(animation.current_animation_length / animation.speed_scale)
 
 func handle_controls(delta):
 	var input := Vector3.ZERO
@@ -91,7 +100,7 @@ func handle_controls(delta):
 	if Input.is_action_just_pressed("jump") and jump_single:
 		jump()
 
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("light_attack"):
 		set_state(States.ATTACKING)
 
 func handle_gravity(delta):
@@ -121,3 +130,7 @@ func jump():
 func collect_coin():
 	coins += 1
 	coin_collected.emit(coins)
+
+
+func _on_attack_timer_timeout():
+	set_state(States.IDLE)
