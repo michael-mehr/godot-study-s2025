@@ -23,6 +23,8 @@ var previously_floored = false
 var jump_single = true
 var coins: int = 0
 
+@onready var game_manager = get_node("/root/GameManager")
+
 @onready var model: Node3D = $Knight
 @onready var animation = $Knight/AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
@@ -97,6 +99,7 @@ func state_blocking(delta):
 	handle_controls(delta)
 	if Input.is_action_pressed("block") == false:
 		set_state(States.IDLE)
+		movement_speed = 500
 	
 
 func handle_controls(delta):
@@ -143,6 +146,7 @@ func jump():
 func collect_coin():
 	coins += 1
 	coin_collected.emit(coins)
+	game_manager.update_coins(coins)
 
 
 func _on_attack_timer_timeout():
