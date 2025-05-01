@@ -48,9 +48,14 @@ label_settings = SubResource("LabelSettings_uahpa")
 layout_mode = 2
 text = "Resume"
 
+[node name="SwitchLevelButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "Switch Level"
+
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/SwitchLevelButton" to="." method="_on_switch_level_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

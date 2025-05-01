@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://clrh5h6011ruc"]
+
+[ext_resource type="PackedScene" uid="uid://vtr8rxg88pl" path="res://scenes/skeleton_minion.tscn" id="1_iwus7"]
+[ext_resource type="PackedScene" uid="uid://bgowi30lhgagn" path="res://scenes/player.tscn" id="2_ciaof"]
+[ext_resource type="PackedScene" uid="uid://drodoipacfse5" path="res://scenes/view.tscn" id="3_ahmjg"]
+[ext_resource type="PackedScene" uid="uid://dj7tyjyan3r0e" path="res://scenes/coin.tscn" id="4_swri5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0wfyh"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_sugp2"]
+sky_material = SubResource("ProceduralSkyMaterial_0wfyh")
+
+[sub_resource type="Environment" id="Environment_jyhfs"]
+background_mode = 2
+sky = SubResource("Sky_sugp2")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ya4ey"]
+vertices = PackedVector3Array(-47.5, 0.2, -23.5, -47.5, 0.2, 23.5, 47.5, 0.2, 23.5, 47.5, 0.2, -23.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[node name="DebugLevel" type="Node3D"]
+process_mode = 1
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jyhfs")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0.51535, 0)
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_ya4ey")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
+use_collision = true
+size = Vector3(96, 1, 48)
+
+[node name="Enemies" type="Node3D" parent="NavigationRegion3D"]
+
+[node name="SkeletonMinion2" parent="NavigationRegion3D/Enemies" instance=ExtResource("1_iwus7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -17)
+player_path = NodePath("../../../Player")
+
+[node name="Player" parent="." node_paths=PackedStringArray("view") instance=ExtResource("2_ciaof")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527765, 0)
+view = NodePath(".")
+
+[node name="View" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_ahmjg")]
+target = NodePath("../Player")
+
+[node name="LevelComponents" type="Node3D" parent="."]
+
+[node name="Coins" type="Node3D" parent="LevelComponents" groups=["pickups"]]
+
+[node name="Coin" parent="LevelComponents/Coins" instance=ExtResource("4_swri5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
+
+[node name="Coin2" parent="LevelComponents/Coins" instance=ExtResource("4_swri5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, -10)
+
+[node name="Coin3" parent="LevelComponents/Coins" instance=ExtResource("4_swri5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, -10)
+
+[node name="Coin4" parent="LevelComponents/Coins" instance=ExtResource("4_swri5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+
+[node name="Coin5" parent="LevelComponents/Coins" instance=ExtResource("4_swri5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, -12)

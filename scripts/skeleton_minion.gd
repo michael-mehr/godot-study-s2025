@@ -26,3 +26,6 @@ func _process(_delta):
 
   move_and_slide()
   animation.play("Running_A", 0.1)
+
+func receive_attack():
+  queue_free()

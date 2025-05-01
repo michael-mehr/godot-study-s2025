@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-enum States { IDLE, RUNNING, ATTACKING }
+enum States { IDLE, RUNNING, ATTACKING, BLOCKING }
 
 var state: States = States.IDLE
 var state_functions = {}
@@ -34,6 +34,7 @@ func _ready():
 	state_functions[States.IDLE] = state_idle
 	state_functions[States.RUNNING] = state_running
 	state_functions[States.ATTACKING] = state_attacking
+	state_functions[States.BLOCKING] = state_blocking
 
 func _physics_process(delta):
 	handle_gravity(delta)
@@ -91,6 +92,13 @@ func state_attacking(delta):
 	if light_attack_area.monitoring == false:
 		light_attack_area.monitoring = true
 
+func state_blocking(delta):
+	movement_speed = 200 # Speed while blocking
+	handle_controls(delta)
+	if Input.is_action_pressed("block") == false:
+		set_state(States.IDLE)
+	
+
 func handle_controls(delta):
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left", "move_right")
@@ -103,9 +111,10 @@ func handle_controls(delta):
 
 	if Input.is_action_just_pressed("jump") and jump_single:
 		jump()
-
-	if Input.is_action_just_pressed("light_attack"):
+	elif Input.is_action_just_pressed("light_attack"):
 		set_state(States.ATTACKING)
+	elif Input.is_action_just_pressed("block"):
+		set_state(States.BLOCKING)
 
 func handle_gravity(delta):
 	gravity += 25 * delta
@@ -143,4 +152,4 @@ func _on_attack_timer_timeout():
 
 func _on_light_attack_area_body_entered(body):
 	if body.get_parent().name == "Enemies":
-		body.queue_free()
+		body.receive_attack()
