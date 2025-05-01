@@ -26,6 +26,8 @@ var coins: int = 0
 @onready var model: Node3D = $Knight
 @onready var animation = $Knight/AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
+@onready var light_attack_area: Area3D = $LightAttackArea
+@onready var l_attack_collision: CollisionShape3D = $LightAttackArea/CollisionShape3D
 
 func _ready():
 	# Initialize state functions
@@ -86,6 +88,8 @@ func state_attacking(delta):
 	if animation.current_animation != "1H_Melee_Attack_Slice_Horizontal":
 		animation.play("1H_Melee_Attack_Slice_Horizontal")
 		attack_timer.start(animation.current_animation_length / animation.speed_scale)
+	if light_attack_area.monitoring == false:
+		light_attack_area.monitoring = true
 
 func handle_controls(delta):
 	var input := Vector3.ZERO
@@ -134,3 +138,9 @@ func collect_coin():
 
 func _on_attack_timer_timeout():
 	set_state(States.IDLE)
+	light_attack_area.monitoring = false
+
+
+func _on_light_attack_area_body_entered(body):
+	if body.get_parent().name == "Enemies":
+		body.queue_free()
