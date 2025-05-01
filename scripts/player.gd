@@ -5,8 +5,6 @@ enum States { IDLE, RUNNING, ATTACKING, BLOCKING }
 var state: States = States.IDLE
 var state_functions = {}
 
-signal coin_collected
-
 @export_subgroup("Components")
 @export var view: Node3D
 
@@ -21,7 +19,9 @@ var gravity = 0
 var previously_floored = false
 
 var jump_single = true
+
 var coins: int = 0
+var hit_points: int = 3
 
 @onready var game_manager = get_node("/root/GameManager")
 
@@ -61,6 +61,9 @@ func _physics_process(delta):
 	if position.y < -10:
 		get_tree().reload_current_scene()
 
+	if hit_points <= 0:
+		get_tree().reload_current_scene()
+
 	# Animation for scale (jumping and landing)
 	model.scale = model.scale.lerp(Vector3(1, 1, 1), delta * 10)
 
@@ -68,9 +71,6 @@ func _physics_process(delta):
 		model.scale = Vector3(1.25, 0.75, 1.25)
 
 	previously_floored = is_on_floor()
-	
-	# if Input.is_action_just_pressed("light_attack"):
-	# 	set_state(States.ATTACKING)
 
 func state_idle(delta):
 	handle_controls(delta)
@@ -145,8 +145,11 @@ func jump():
 
 func collect_coin():
 	coins += 1
-	coin_collected.emit(coins)
 	game_manager.update_coins(coins)
+
+func take_damage():
+	hit_points = hit_points - 1
+	game_manager.update_hp(hit_points)
 
 
 func _on_attack_timer_timeout():

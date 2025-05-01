@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbmjejxxpmkor"]
+[gd_scene load_steps=12 format=3 uid="uid://bbmjejxxpmkor"]
 
 [ext_resource type="Script" uid="uid://blyiipwaegf27" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://clrh5h6011ruc" path="res://scenes/debug_level.tscn" id="2_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://frhfsa4fls6e" path="res://scenes/pause_menu.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://cgq5nbbqti7ij" path="res://scripts/hud.gd" id="6_choun"]
 [ext_resource type="Texture2D" uid="uid://bibnv451te7sp" path="res://addons/Kenney Game Assets/HUD/hud_coins.png" id="6_o6xl0"]
+[ext_resource type="FontFile" uid="uid://dl8vwuvyb0ddj" path="res://addons/fonts/monogram/monogram-extended.ttf" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://b57o1syrfk53i" path="res://addons/Kenney Game Assets/HUD/hud_x.png" id="8_ya4ey"]
 [ext_resource type="FontFile" uid="uid://kgdljoa2ub1g" path="res://addons/fonts/monogram/monogram.ttf" id="9_eb6dy"]
 
@@ -13,6 +14,14 @@ font = ExtResource("9_eb6dy")
 font_size = 60
 shadow_color = Color(0, 0, 0, 0.85098)
 shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
+font = ExtResource("7_tipki")
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_choun"]
+font = ExtResource("7_tipki")
+font_size = 81
 
 [node name="GameManager" type="Node"]
 process_mode = 3
@@ -62,6 +71,29 @@ offset_right = 171.0
 offset_bottom = 71.0
 text = "0"
 label_settings = SubResource("LabelSettings_trceg")
+
+[node name="HealthCounter" type="Control" parent="UI/HUD"]
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 120.0
+offset_right = 85.0
+offset_bottom = 160.0
+
+[node name="HP" type="Label" parent="UI/HUD/HealthCounter"]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 48.0
+text = "HP:"
+label_settings = SubResource("LabelSettings_85g3d")
+
+[node name="HPCount" type="Label" parent="UI/HUD/HealthCounter"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = -9.0
+offset_right = 124.0
+offset_bottom = 56.0
+text = "3"
+label_settings = SubResource("LabelSettings_choun")
 
 [node name="PauseMenu" parent="UI" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_sugp2")]
 visible = false

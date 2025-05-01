@@ -11,6 +11,7 @@ var next_scene = preload("res://scenes/test_level.tscn")
 @onready var current_level: Node3D = debug_level
 
 @onready var coin_count: Label = $UI/HUD/CoinCounter/Coins
+@onready var hp_count: Label = $UI/HUD/HealthCounter/HPCount
 
 var game_paused : bool = false:
 	get:
@@ -31,3 +32,6 @@ func switch_level():
 
 func update_coins(num_coins):
 	coin_count.text = str(num_coins)
+
+func update_hp(num_hp):
+	hp_count.text = str(num_hp)

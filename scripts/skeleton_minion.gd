@@ -1,10 +1,14 @@
 extends CharacterBody3D
 
-var player = null
-
 const SPEED = 3.0
 
 @export var player_path : NodePath
+@onready var player = null
+
+enum States { IDLE, RUNNING, ATTACKING }
+
+var state: States = States.IDLE
+var state_functions = {}
 
 @onready var nav_agent = $NavigationAgent3D
 
@@ -29,3 +33,6 @@ func _process(_delta):
 
 func receive_attack():
   queue_free()
+func _on_attack_area_body_entered(body:Node3D):
+  if body.has_method("take_damage"):
+    body.take_damage()
