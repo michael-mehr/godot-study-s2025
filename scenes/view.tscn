@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dsdkvtijr8evj" path="res://scripts/view.gd" id="1_dbgjr"]
 
-[node name="View" type="Node3D" node_paths=PackedStringArray("target")]
+[node name="View" type="Node3D"]
 script = ExtResource("1_dbgjr")
-target = NodePath("")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.768976, 0.639278, 0, -0.639278, 0.768976, 0, 8.45189, 8.02275)

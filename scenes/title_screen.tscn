@@ -60,7 +60,7 @@ grow_vertical = 2
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Dungeon
-Errand
+Hijinks
 "
 label_settings = SubResource("LabelSettings_dc4i4")
 horizontal_alignment = 1
