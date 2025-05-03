@@ -55,7 +55,7 @@ target = NodePath("../Player")
 
 [node name="LevelComponents" type="Node3D" parent="."]
 
-[node name="Coins" type="Node3D" parent="LevelComponents" groups=["pickups"]]
+[node name="Coins" type="Node3D" parent="LevelComponents"]
 
 [node name="Coin" parent="LevelComponents/Coins" instance=ExtResource("4_swri5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
